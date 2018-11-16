@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="cr2-Bx-613">
+                                <rect key="frame" x="0.0" y="-5" width="375" height="677"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Chu-PL-ecE">
+                                <rect key="frame" x="-5" y="100" width="677" height="275"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Chu-PL-ecE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="7Sg-Ji-bq4">
+                                <variation key="heightClass=compact" constant="100"/>
+                            </constraint>
+                            <constraint firstItem="cr2-Bx-613" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="88a-w3-Ozu"/>
+                            <constraint firstAttribute="trailing" secondItem="cr2-Bx-613" secondAttribute="trailing" id="S3y-If-PzL"/>
+                            <constraint firstAttribute="trailing" secondItem="Chu-PL-ecE" secondAttribute="trailing" constant="10" id="YXS-RW-qgg">
+                                <variation key="heightClass=compact" constant="-5"/>
+                            </constraint>
+                            <constraint firstItem="Chu-PL-ecE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="10" id="g5W-Tx-hJu">
+                                <variation key="heightClass=compact" constant="-5"/>
+                            </constraint>
+                            <constraint firstAttribute="bottom" secondItem="Chu-PL-ecE" secondAttribute="bottom" id="lA4-KR-z6l"/>
+                            <constraint firstAttribute="bottom" secondItem="cr2-Bx-613" secondAttribute="bottom" constant="-5" id="mXc-kb-tr0"/>
+                            <constraint firstItem="cr2-Bx-613" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="-5" id="soM-CB-gGo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cr2-Bx-613"/>
+                                <exclude reference="Chu-PL-ecE"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7Sg-Ji-bq4"/>
+                                <exclude reference="YXS-RW-qgg"/>
+                                <exclude reference="g5W-Tx-hJu"/>
+                                <exclude reference="lA4-KR-z6l"/>
+                                <exclude reference="88a-w3-Ozu"/>
+                                <exclude reference="S3y-If-PzL"/>
+                                <exclude reference="mXc-kb-tr0"/>
+                                <exclude reference="soM-CB-gGo"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <include reference="Chu-PL-ecE"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7Sg-Ji-bq4"/>
+                                <include reference="YXS-RW-qgg"/>
+                                <include reference="g5W-Tx-hJu"/>
+                                <include reference="lA4-KR-z6l"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="cr2-Bx-613"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="88a-w3-Ozu"/>
+                                <include reference="S3y-If-PzL"/>
+                                <include reference="mXc-kb-tr0"/>
+                                <include reference="soM-CB-gGo"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48.799999999999997" y="371.96401799100454"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon" width="476" height="658"/>
+    </resources>
+</document>
