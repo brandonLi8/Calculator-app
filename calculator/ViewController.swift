@@ -1235,9 +1235,14 @@ class ViewController: UIViewController {
         if text == "ℯ" {
             text = "2.718281828459"
             display.text = text
-            return
+            return  
         }
         text = fillParenthesis(text)
+        if text.range(of:"()") != nil {
+            text = "error:syntax"
+            display.text = text
+            return
+        }
         if text == "error:parenthesis"{
             display.text = text
             return 
