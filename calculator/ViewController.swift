@@ -99,7 +99,6 @@ class ViewController: UIViewController {
 
     @IBAction func entry(_ sender: Any) {
         if entries.isEmpty  == false{
-            print("herer")
             if entries.count - 1 - entryCount >= 0 {
                 text = entries[entries.count - 1 - entryCount]
             }
@@ -425,8 +424,25 @@ class ViewController: UIViewController {
             return
         }
 //        let range = text.startIndex..<text.index(before: text.endIndex)
-        
-        text = substring(0, text.count - addedLength, text)
+        if text.count >= 2 && substring(text.count - 2, text.count, text) == "√("{
+            text = substring(0, text.count - 2, text)
+            addedLength = 1
+            display.text = text
+            return
+        }
+        if text.count >= 4 && (substring(text.count - 4, text.count, text) == "sin(" || substring(text.count - 4, text.count, text) == "cos(" || substring(text.count - 4, text.count, text) == "tan(" || substring(text.count - 4, text.count, text) == "csc(" || substring(text.count - 4, text.count, text) == "sec(" || substring(text.count - 4, text.count, text) == "cot("){
+            text = substring(0, text.count - 4, text)
+            addedLength = 1
+            display.text = text
+            return
+        }
+        if text.count >= 6 && (substring(text.count - 6, text.count, text) == "sin-1(" || substring(text.count - 6, text.count, text) == "cos-1(" || substring(text.count - 6, text.count, text) == "tan-1(" ){
+            text = substring(0, text.count - 6, text)
+            addedLength = 1
+            display.text = text
+            return
+        }
+        text = substring(0, text.count - addedLength, text) 
             
         addedLength = 1
         display.text = text
@@ -924,7 +940,6 @@ class ViewController: UIViewController {
         var result = text
         var close = 0
         while true{
-            //        print(i) //"tan-1((2+5)(sin(-2)))"
             if result.range(of:"cos") == nil && result.range(of:"sin") == nil && result.range(of:"tan") == nil && result.range(of:"csc") == nil && result.range(of:"sec") == nil && result.range(of:"cot") == nil && result.range(of:"sin-1") == nil && result.range(of:"cos-1") == nil && result.range(of:"tan-1") == nil && result.range(of:"√") == nil{
                 return result
             }
@@ -938,11 +953,9 @@ class ViewController: UIViewController {
                     return "error:syntax"
                 }
                 
-                //            print("current", current)
                 
                 close = getCorrespondingCloseParenthesisIndex(result, i%result.count)
                 trig = gettrig(result, i%result.count)
-                //            print(trig)
                 if current.range(of:"cos") == nil && current.range(of:"sin") == nil && current.range(of:"tan") == nil && current.range(of:"csc") == nil && current.range(of:"sec") == nil && current.range(of:"cot") == nil && current.range(of:"sin-1") == nil && current.range(of:"cos-1") == nil && current.range(of:"tan-1") == nil && current.range(of:"√") == nil && (trig == "sin" || trig == "cos" || trig == "tan" || trig == "sec" || trig == "csc" || trig == "cot" || trig == "sin-1" || trig == "tan-1" || trig == "cos-1" || trig == "√" ){ // doesnt have any trig functions
                     trig = gettrig(result, i%result.count)
                     if evalTrig(current, trig).range(of: "error") != nil{
@@ -975,7 +988,6 @@ class ViewController: UIViewController {
                         else{
                             result = substring(0, i%result.count-5, result) + new + substring(close + 1, result.count, result)
                         }
-                        //                print("result")
                     }
                     i = -1
                 }
@@ -1074,7 +1086,6 @@ class ViewController: UIViewController {
                 return "error:sqrt"
             }
             n = pow(Double(text)!, 0.5)
-            print(n, text)
             
         }
         if trig == "cos"{
@@ -1094,32 +1105,38 @@ class ViewController: UIViewController {
             }
         }
         if trig == "tan-1"{
+            n = atan(Double(text)!)
+
             if mode == "deg"{
-                n = atan((Double(text)!*Double.pi)/180.0)
+                n *= (180.0/Double.pi)
+
             }
-            else{
-                n = atan(Double(text)!)
-            }
+            
+            
             
         }
         if trig == "cos-1"{
             if Double(text)! < -1.0 || Double(text)! > 1.0{
                 return "error:Domain"
             }
+            n = acos(Double(text)!)
+
             if mode == "deg"{
-                n = acos((Double(text)!*Double.pi)/180.0)
+                n *= (180.0/Double.pi)
+
             }
-            else{
-                n = acos(Double(text)!)
-            }
+           
         }
         if trig == "sin-1"{
+            if Double(text)! < -1.0 || Double(text)! > 1.0{
+                return "error:Domain"
+            }
+            n = asin(Double(text)!)
+
             if mode == "deg"{
-                n = asin((Double(text)!*Double.pi)/180.0)
+                n *= (180.0/Double.pi)
             }
-            else{
-                n = asin(Double(text)!)
-            }
+            
             
         }
         if trig == "sec"{
@@ -1241,10 +1258,12 @@ class ViewController: UIViewController {
         if text.range(of:"()") != nil {
             text = "error:syntax"
             display.text = text
+            error = true
             return
         }
         if text == "error:parenthesis"{
             display.text = text
+            error = true
             return 
         }
         text = evaluate(text)
